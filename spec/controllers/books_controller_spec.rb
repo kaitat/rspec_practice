@@ -47,9 +47,8 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
-  #TODO: エラーがでていてわからないから一旦スキップ
-  xdescribe '#update' do
-    subject { patch :update, params: { book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
+  describe '#update' do
+    subject { patch :update, params: { id: 1, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
 
     context 'when send correct params' do
       let(:title) {'test'}
