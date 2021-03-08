@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
   # shothand [# .]をつけると省略もdできる
+
   describe '#index' do
     subject { get :index, params: { q: keyword } }
 
@@ -12,7 +13,7 @@ RSpec.describe BooksController, type: :controller do
 
     context 'when send correct params' do
       let(:keyword) {'ruby'}
-      let!(:book) {create :book} #itが実行される前に実行される
+      let(:book) {create :book} #itが実行される前に実行される
       it {is_expected.to have_http_status(:ok)} #have_http_status = 200であることを証明
     end
   end
@@ -39,16 +40,15 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe '#show' do
-    subject { get :show, params: { id: id } }
+    subject { get :show, params: { id: book } }
     context 'when send correct params' do
-      let!(:book) {create :book, id: 1}
-      let(:id) {1}
+      let(:book) {create :book}
       it {is_expected.to have_http_status(:ok)}
     end
   end
 
   describe '#update' do
-    subject { patch :update, params: { id: 1, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
+    subject { patch :update, params: { id: book, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
 
     context 'when send correct params' do
       let(:title) {'test'}
@@ -57,16 +57,15 @@ RSpec.describe BooksController, type: :controller do
       let(:description) {'testデータ'}
       let(:new_image) {'image'}
       let(:category_id) {1}
-      let!(:book) {create :book, id: 1}
+      let(:book) {create :book}
       it {is_expected.to have_http_status(:ok)}
     end
   end
   describe '#destroy' do
-    subject { delete :destroy, params: {id: id} }
+    subject { delete :destroy, params: {id: book} }
 
     context 'when send correct params' do
-      let!(:book) {create :book, id: 1}
-      let(:id) {1}
+      let(:book) {create :book}
       it {is_expected.to have_http_status 302}
     end
   end
