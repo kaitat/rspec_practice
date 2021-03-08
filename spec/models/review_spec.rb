@@ -8,27 +8,27 @@ RSpec.describe Review, type: :model do
       it {is_expected.to be_valid }
     end
 
-    context ' when title is not ok' do
+    context ' when title is nil' do
       let(:review) { build :review, title: nil }
       it {is_expected.to_not be_valid}
     end
 
-    context ' when title is more 50' do
+    context ' when title is nil' do
       let(:review) { build :review, title: 'a'*51 }
       it {is_expected.to_not be_valid}
     end
 
-    context ' when body is not ok' do
+    context ' when body is nil' do
       let(:review) { build :review, body: nil }
       it {is_expected.to_not be_valid}
     end
 
-    context ' when body is more 500' do
+    context ' when body is nil' do
       let(:review) { build :review, body: 'a'*501 }
       it {is_expected.to_not be_valid}
     end
 
-    context ' when body is not ok' do
+    context ' when body is nil' do
       let(:review) { build :review, evaluation: nil }
       it {is_expected.to_not be_valid}
     end
