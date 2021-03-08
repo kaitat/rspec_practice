@@ -41,7 +41,7 @@ RSpec.describe BooksController, type: :controller do
   describe '#show' do
     subject { get :show, params: { id: id } }
     context 'when send correct params' do
-      let!(:book) {create :book}
+      let!(:book) {create :book, id: 1}
       let(:id) {1}
       it {is_expected.to have_http_status(:ok)}
     end
@@ -57,7 +57,7 @@ RSpec.describe BooksController, type: :controller do
       let(:description) {'testデータ'}
       let(:new_image) {'image'}
       let(:category_id) {1}
-      let!(:book) {create :book}
+      let!(:book) {create :book, id: 1}
       it {is_expected.to have_http_status(:ok)}
     end
   end
@@ -65,7 +65,7 @@ RSpec.describe BooksController, type: :controller do
     subject { delete :destroy, params: {id: id} }
 
     context 'when send correct params' do
-      let!(:book) {create :book}
+      let!(:book) {create :book, id: 1}
       let(:id) {1}
       it {is_expected.to have_http_status 302}
     end
