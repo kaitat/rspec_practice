@@ -13,7 +13,7 @@ RSpec.describe Review, type: :model do
       it {is_expected.to_not be_valid}
     end
 
-    context ' when title is nil' do
+    context ' when title is more 50' do
       let(:review) { build :review, title: 'a'*51 }
       it {is_expected.to_not be_valid}
     end
@@ -23,7 +23,7 @@ RSpec.describe Review, type: :model do
       it {is_expected.to_not be_valid}
     end
 
-    context ' when body is nil' do
+    context ' when body is more 500' do
       let(:review) { build :review, body: 'a'*501 }
       it {is_expected.to_not be_valid}
     end

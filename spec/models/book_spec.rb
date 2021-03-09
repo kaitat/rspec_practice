@@ -19,7 +19,7 @@ describe Book, type: :model do
       let(:book){ build :book, title: nil }
       it { is_expected.to_not be_valid }
     end
-    context "when title is nil" do
+    context "when title is more 50" do
       let(:book){ build :book, title: 'a'*51 }
       it { is_expected.to_not be_valid }
     end
@@ -29,7 +29,7 @@ describe Book, type: :model do
       it { is_expected.to_not be_valid }
     end
 
-    context "when price is nil" do
+    context "when price is not more 0" do
       let(:book){ build :book, price: 0 }
       it { is_expected.to_not be_valid }
     end
@@ -42,7 +42,7 @@ describe Book, type: :model do
       let(:book){ build :book, description: nil }
       it { is_expected.to_not be_valid }
     end
-    context "when description is nil" do
+    context "when description is more 1000" do
       let(:book){ build :book, description: 'a'*1001 }
       it { is_expected.to_not be_valid }
     end
