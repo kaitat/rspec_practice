@@ -40,15 +40,16 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe '#show' do
-    subject { get :show, params: { id: book } }
+    subject { get :show, params: { id: book_id } }
     context 'when send correct params' do
-      let(:book) {create :book}
+      let(:book) { create :book }
+      let(:book_id) { book.id }
       it {is_expected.to have_http_status(:ok)}
     end
   end
 
   describe '#update' do
-    subject { patch :update, params: { id: book, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
+    subject { patch :update, params: { id: book_id, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
 
     context 'when send correct params' do
       let(:title) {'test'}
@@ -58,14 +59,16 @@ RSpec.describe BooksController, type: :controller do
       let(:new_image) {'image'}
       let(:category_id) {1}
       let(:book) {create :book}
+      let(:book_id) { book.id }
       it {is_expected.to have_http_status(:ok)}
     end
   end
   describe '#destroy' do
-    subject { delete :destroy, params: {id: book} }
+    subject { delete :destroy, params: {id: book_id} }
 
     context 'when send correct params' do
       let(:book) {create :book}
+      let(:book_id) { book.id }
       it {is_expected.to have_http_status 302}
     end
   end
