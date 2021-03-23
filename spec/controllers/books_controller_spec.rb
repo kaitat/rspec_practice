@@ -26,16 +26,15 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe '#create' do
-    subject { post :create, params: { book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
+    subject { post :create, params: { book: { title: title, price: price, publish_date: publish_date, description: description, category_id: category_id } } }
     context 'when send correct params' do
       let(:title) {'test'}
       let(:price) {1999}
       let(:publish_date) {Time.now}
       let(:description) {'testデータ'}
-      let(:new_image) {'image'}
-      let(:category_id) {1}
-      it {is_expected.to have_http_status(:ok)}
-      # countでデータ数チェックしてもいいかもしれない
+      let!(:category) { create :category }
+      let(:category_id) { category.id }
+      it {is_expected.to have_http_status(302)}
     end
   end
 
@@ -49,18 +48,18 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe '#update' do
-    subject { patch :update, params: { id: book_id, book: { title: title, price: price, publish_date: publish_date, description: description, new_image: new_image, category_id: category_id } } }
+    subject { patch :update, params: { id: book_id, book: { title: title, price: price, publish_date: publish_date, description: description, category_id: category_id } } }
 
     context 'when send correct params' do
       let(:title) {'test'}
       let(:price) {1999}
       let(:publish_date) {Time.now}
       let(:description) {'testデータ'}
-      let(:new_image) {'image'}
-      let(:category_id) {1}
+      let!(:category) { create :category }
+      let(:category_id) { category.id }
       let(:book) {create :book}
       let(:book_id) { book.id }
-      it {is_expected.to have_http_status(:ok)}
+      it {is_expected.to have_http_status(302)}
     end
   end
   describe '#destroy' do
