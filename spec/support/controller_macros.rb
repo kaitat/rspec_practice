@@ -1,4 +1,5 @@
 # devise ログインの処理 先にadminも置いておく
+#  https://github.com/heartcombo/devise/wiki/How-To:-Test-controllers-with-Rails-(and-RSpec)
 module ControllerMacros
   def login_admin(admin)
     @request.env["devise.mapping"] = Devise.mappings[:admin]
